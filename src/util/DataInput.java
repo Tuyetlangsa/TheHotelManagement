@@ -30,7 +30,7 @@ public class DataInput {
 
     public static int getAnInteger(String inputMsg, String errorMsg, int lowerBound, int upperBound) {
         int n, tmp;
-        //nếu đầu vào lower > upper thì đổi chỗ
+       
         if (lowerBound > upperBound) {
             tmp = lowerBound;
             lowerBound = upperBound;
@@ -50,7 +50,7 @@ public class DataInput {
         }
     }
 
-    //nhập vào 1 số thực, chặn hết các trường hợp cà chớn 
+    
     public static double getADouble(String inputMsg, String errorMsg) {
         double n;
         while (true) {
@@ -66,7 +66,7 @@ public class DataInput {
 
     public static double getADouble(String inputMsg, String errorMsg, double lowerBound, double upperBound) {
         double n, tmp;
-        //nếu đầu vào lower > upper thì đổi chỗ
+        
         if (lowerBound > upperBound) {
             tmp = lowerBound;
             lowerBound = upperBound;
@@ -86,8 +86,7 @@ public class DataInput {
         }
     }
 
-    //nhập vào một chuỗi kí tự, theo định dạng đc đưa vào
-    //định dạng xài Regular Expression
+    
     public static String getID(String inputMsg, String errorMsg, String format) {
         String id;
         boolean match;

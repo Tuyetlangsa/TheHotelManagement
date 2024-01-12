@@ -13,6 +13,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import static util.DataInput.getID;
 import static util.DataInput.getString;
@@ -150,12 +151,12 @@ public class ListHotel extends ArrayList<HotelInformation> {
 
     public void deleteHotel() {
         if (this.isEmpty()) {
-            System.out.println("No hotel in the list");
+            System.out.println("HOTEL DOES NOT EXIST!");
         } else {
-            String id = getID("Enter the hotel's ID to delete: ", "INVALID ID","^[H/h]\\d{4}$");
+            String id = getID("Enter the hotel's ID to delete: ", "INVALID ID","^[H/h]\\d+");
             int i = this.searchHotelByID(id);
             if ( i == -1) {
-                System.out.println("Hotel does not exist!");
+                System.out.println("HOTEL DOES NOT EXIST!");
             } else {
                 String choice = getStringFormat("Enter Y/N", "INVALID CHOICE","^[Y/N/y/n]$");
                 if ("Y".equals(choice)) this.remove(i);
@@ -163,7 +164,28 @@ public class ListHotel extends ArrayList<HotelInformation> {
 
             }
         }
-
     }
+    
+    public void displayHotelList( ListHotel list) {
+//        this.loadFromFile(path);
+        if (list.isEmpty()) System.out.println("NO HOTEL IN THE LIST!");
+        else {
+            ListHotel listTmp = (ListHotel)list.clone();
+            Collections.sort(listTmp);
+            System.out.println("------------------------------------ THE HOTEL INFORMATION LIST ------------------------------------");
+            System.out.println("|   ID  |      Name     |    Room Available    |            Address           |   Phone Number   | Rating (Star) |");
+            for (HotelInformation hotelInf : listTmp) {
+                System.out.printf("|%-7s|%-15s|%-22d|%-30s|%-18s|%-15d|\n",hotelInf.getHotel_Id(), hotelInf.getHotel_Name(),hotelInf.getHotel_Room_Available(),hotelInf.getHotel_Address(), hotelInf.getHotel_Phone(), hotelInf.getHotel_Rating());
+                for (int i = 0; i < 114; i++) {
+                    System.out.print("-");          
+                }
+                System.out.println("");
+            }
+        }
+    }
+    
+    
+    
+    
 
 }

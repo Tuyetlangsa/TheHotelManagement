@@ -18,21 +18,12 @@ public class Tester {
         final String path = "src\\Data\\ListOfHotels.txt";
         ListHotel lht = new ListHotel();
         lht.loadFromFile(path);
-              for (HotelInformation hotelInformation : lht) {
-            System.out.println(hotelInformation);
-        }
+        
+        
+        
 
-        lht.updateHotelInformation();
         lht.saveToFile(path);
-        
-        
-        
-        
-        
-        for (HotelInformation hotelInformation : lht) {
-            System.out.println(hotelInformation);
-        }
-        
-        
+        lht.displayHotelList( lht);
+
     }
 }

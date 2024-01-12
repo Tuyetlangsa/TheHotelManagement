@@ -17,7 +17,7 @@ import static util.DataInput.getString2Formats;
  *
  * @author long
  */
-public class HotelInformation implements Comparable {
+public class HotelInformation implements Comparable<HotelInformation> {
 
     private String hotel_Id;
     private String hotel_Name;
@@ -86,9 +86,11 @@ public class HotelInformation implements Comparable {
         this.hotel_Rating = hotel_Rating;
     }
 
-    @Override
-    public int compareTo(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int compareTo(HotelInformation o) {
+        int check = this.getHotel_Name().compareTo(o.getHotel_Name());
+        if ( check > 0) return 1;
+        else if(check < 0) return -1;
+        else return this.hotel_Id.compareTo(o.getHotel_Id());              
     }
 
     public void setID() {
@@ -119,7 +121,7 @@ public class HotelInformation implements Comparable {
     }
 
     public String getInputID() {
-        String id = getString2Formats("Enter the hotel's ID(HXXXX):", "The format of ID stands for HXXXX", "", "^[H/h]\\d+");
+        String id = getString2Formats("Enter the hotel's ID(HXXXX):", "The format of ID stands for HXXXX", "", "^[H/h]\\d+").toUpperCase();
         if (id != null) {
             this.setHotel_Id(id);
         }
@@ -175,4 +177,5 @@ public class HotelInformation implements Comparable {
         return hotel_Id + "-" + hotel_Name + "-" + hotel_Room_Available + "-" + hotel_Address + "-" + hotel_Phone + "-" + hotel_Rating;
     }
 
+  
 }
