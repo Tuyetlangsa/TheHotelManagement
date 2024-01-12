@@ -186,6 +186,7 @@ public class DataInput {
         int num;
         String str;
         while (true) {
+            System.out.println(inputMsg);
             str = sc.nextLine();
             if (str.isEmpty()) {
                 return 0;

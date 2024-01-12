@@ -33,8 +33,9 @@ public class ListHotel extends ArrayList<HotelInformation> {
             FileReader fr = new FileReader(fullpath);
             BufferedReader br = new BufferedReader(fr);
             String thisLineHotel;
-            HotelInformation hotelTmp = new HotelInformation();
+            
             while ((thisLineHotel = br.readLine()) != null) {
+                HotelInformation hotelTmp = new HotelInformation();
                 if (!(thisLineHotel.isEmpty())) {
                     String splits[] = thisLineHotel.split("-");
                     hotelTmp.setHotel_Id(splits[0]);
