@@ -88,8 +88,8 @@ public class HotelInformation implements Comparable<HotelInformation> {
 
     public int compareTo(HotelInformation o) {
         int check = this.getHotel_Name().compareTo(o.getHotel_Name());
-        if ( check > 0) return 1;
-        else if(check < 0) return -1;
+        if ( check > 0) return -1;
+        else if(check < 0) return 1;
         else return this.hotel_Id.compareTo(o.getHotel_Id());              
     }
 
@@ -120,13 +120,13 @@ public class HotelInformation implements Comparable<HotelInformation> {
         this.hotel_Rating = getAnInteger("Enter hotel's rating star: ", "INVALID HOTEL RATING", 0, 6);
     }
 
-    public String getInputID() {
-        String id = getString2Formats("Enter the hotel's ID(HXXXX):", "The format of ID stands for HXXXX", "", "^[H/h]\\d+").toUpperCase();
-        if (id != null) {
-            this.setHotel_Id(id);
-        }
-        return id;
-    }
+//    public String getInputID() {
+//        String id = getString2Formats("Enter the hotel's ID(HXXXX):", "The format of ID stands for HXXXX", "", "^[H/h]\\d+").toUpperCase();
+//        if (id != null) {
+//            this.setHotel_Id(id);
+//        }
+//        return id;
+//    }
 
     public String getInputPhoneNum() {
         String phone = getString2Formats("Enter the hotel's phone number(0XXXXXXXXX):", "The format of phone number stands for 0XXXXXXXXX", "", "^[0]\\d{9}");

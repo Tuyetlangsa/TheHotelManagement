@@ -20,7 +20,7 @@ public class DataInput {
         while (true) {
             try {
                 System.out.print(inputMsg);
-                n = Integer.parseInt(sc.nextLine());
+                n = Integer.parseInt(sc.nextLine().trim());
                 return n;
             } catch (Exception e) {
                 System.out.println(errorMsg);
@@ -39,7 +39,7 @@ public class DataInput {
         while (true) {
             try {
                 System.out.print(inputMsg);
-                n = Integer.parseInt(sc.nextLine());
+                n = Integer.parseInt(sc.nextLine().trim());
                 if (n < lowerBound || n > upperBound) {
                     throw new Exception();
                 }
@@ -56,7 +56,7 @@ public class DataInput {
         while (true) {
             try {
                 System.out.print(inputMsg);
-                n = Double.parseDouble(sc.nextLine());
+                n = Double.parseDouble(sc.nextLine().trim());
                 return n;
             } catch (Exception e) {
                 System.out.println(errorMsg);
@@ -75,7 +75,7 @@ public class DataInput {
         while (true) {
             try {
                 System.out.print(inputMsg);
-                n = Double.parseDouble(sc.nextLine());
+                n = Double.parseDouble(sc.nextLine().trim());
                 if (n < lowerBound || n > upperBound) {
                     throw new Exception();
                 }
@@ -179,6 +179,7 @@ public class DataInput {
                 return str;
             }
         }
+        
     }
 
     public static int getAnIntegerCanHaveBlank(String inputMsg, String errorMsg,int lowerbound, int upperbound) {
@@ -186,7 +187,7 @@ public class DataInput {
         String str;
         while (true) {
             System.out.println(inputMsg);
-            str = sc.nextLine();
+            str = sc.nextLine().trim();
             if (str.isEmpty()) {
                 return 0;
             } else {

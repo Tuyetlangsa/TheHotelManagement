@@ -5,20 +5,48 @@
  */
 package viewer;
 
-import Controller.ListHotel;
+
 import java.util.ArrayList;
+import static util.DataInput.getAnInteger;
 
 /**
  *
  * @author long
  */
 public class Menu extends ArrayList<String> {
-    public void addOption(String opt) {
-        this.add(opt);
+   private String menuTitle;
+    
+    
+
+    
+    public Menu(String menuTitle) {
+        this.menuTitle = menuTitle;
+    }
+        
+
+    public void addNewOption(String newOption) {
+        this.add(newOption);        
     }
     
-    public void deleteOption(int number) {
-     
+   
+    public void printMenu() {
+        if (this.isEmpty()) {
+            System.out.println("There is no item in the menu");
+            return;
+        }
+        System.out.println("\n------------------------------------");
+        System.out.println("Welcome to " + menuTitle);
+        for (String x : this)
+            System.out.println(this.indexOf(x)+ 1+ ". "+ x);  
+    }
+    
+
+    public int getChoice() {
+        int maxOption = this.size();
+        String inputMsg = "Choose [1.." + maxOption + "]: ";
+        String errorMsg = "You are required to choose the option 1.." + maxOption; 
+        return getAnInteger(inputMsg, errorMsg, 1, maxOption);
+   
     }
     
     

@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 import static util.DataInput.getID;
 import static util.DataInput.getString;
 import static util.DataInput.getStringFormat;
@@ -34,7 +33,7 @@ public class ListHotel extends ArrayList<HotelInformation> {
             FileReader fr = new FileReader(fullpath);
             BufferedReader br = new BufferedReader(fr);
             String thisLineHotel;
-            
+
             while ((thisLineHotel = br.readLine()) != null) {
                 HotelInformation hotelTmp = new HotelInformation();
                 if (!(thisLineHotel.isEmpty())) {
@@ -67,20 +66,20 @@ public class ListHotel extends ArrayList<HotelInformation> {
                 }
                 pw.close();
             }
-            System.out.println("SAVE SUCCESSFULLY.");
+            
         } catch (FileNotFoundException e) {
         }
     }
+
     public void addAHotel() {
         System.out.println("--------------- ADDING A HOTEL ---------------");
         HotelInformation hotelTmp = new HotelInformation();
         boolean check = true;
-        while(check) {
+        while (check) {
             hotelTmp.setID();
-            if(this.searchHotelByID(hotelTmp.getHotel_Id()) != -1) {
+            if (this.searchHotelByID(hotelTmp.getHotel_Id()) != -1) {
                 System.out.println("EXISTED HOTEL. ENTER ANOTHER ID.");
-            }
-            else {
+            } else {
                 check = false;
             }
         }
@@ -90,11 +89,11 @@ public class ListHotel extends ArrayList<HotelInformation> {
         hotelTmp.setHotel_Phone();
         hotelTmp.setHotel_Rating();
         this.add(hotelTmp);
-        
-               
-            System.out.println("ADD HOTEL SUCCESSFULLY");
-        
+
+        System.out.println("ADD HOTEL SUCCESSFULLY");
+
     }
+
     public boolean check() {
         String id = getString("Enter hotel's ID to check: ", "INVALID ID");
         boolean tmp = false;
@@ -107,7 +106,6 @@ public class ListHotel extends ArrayList<HotelInformation> {
         return tmp;
     }
 
-
     public int searchHotelByID(String id) {
         int tmp = -1;
         for (HotelInformation hi : this) {
@@ -118,9 +116,7 @@ public class ListHotel extends ArrayList<HotelInformation> {
         }
         return tmp;
     }
-    
-    
-    
+
     public HotelInformation searchHotelByIDV2(String id) {
         HotelInformation tmp = null;
         for (HotelInformation hi : this) {
@@ -131,15 +127,13 @@ public class ListHotel extends ArrayList<HotelInformation> {
         }
         return tmp;
     }
-    
 
     public void updateHotelInformation() {
         String id = getID("Enter  the hotel's ID(HXXXX): ", "The format of ID stands for HXXXX.", "^[H/h]\\d+");
         HotelInformation tmp = this.searchHotelByIDV2(id);
         if (tmp == null) {
             System.out.println("HOTEL DOES NOT EXIST");
-        } else {
-            tmp.getInputID();
+        } else {       
             tmp.getInputName();
             tmp.getHotel_Room_Available();
             tmp.getInputAddress();
@@ -153,39 +147,39 @@ public class ListHotel extends ArrayList<HotelInformation> {
         if (this.isEmpty()) {
             System.out.println("HOTEL DOES NOT EXIST!");
         } else {
-            String id = getID("Enter the hotel's ID to delete: ", "INVALID ID","^[H/h]\\d+");
+            String id = getID("Enter the hotel's ID to delete: ", "INVALID ID", "^[H/h]\\d+");
             int i = this.searchHotelByID(id);
-            if ( i == -1) {
+            if (i == -1) {
                 System.out.println("HOTEL DOES NOT EXIST!");
             } else {
-                String choice = getStringFormat("Enter Y/N", "INVALID CHOICE","^[Y/N/y/n]$");
-                if ("Y".equals(choice)) this.remove(i);
-                System.out.println("DELETE SUCCESSFULLY");
+                String choice = getStringFormat("Enter Y/N", "INVALID CHOICE", "^[Y/N/y/n]$");
+                if ("Y".equals(choice)) {
+                    this.remove(i);
+                    System.out.println("DELETE SUCCESSFULLY");
+                }
+                
 
             }
         }
     }
-    
-    public void displayHotelList( ListHotel list) {
+
+    public void displayHotelList(ListHotel list) {
 //        this.loadFromFile(path);
-        if (list.isEmpty()) System.out.println("NO HOTEL IN THE LIST!");
-        else {
-            ListHotel listTmp = (ListHotel)list.clone();
+        if (list.isEmpty()) {
+            System.out.println("NO HOTEL IN THE LIST!");
+        } else {
+            ListHotel listTmp = (ListHotel) list.clone();
             Collections.sort(listTmp);
             System.out.println("------------------------------------ THE HOTEL INFORMATION LIST ------------------------------------");
             System.out.println("|   ID  |      Name     |    Room Available    |            Address           |   Phone Number   | Rating (Star) |");
             for (HotelInformation hotelInf : listTmp) {
-                System.out.printf("|%-7s|%-15s|%-22d|%-30s|%-18s|%-15d|\n",hotelInf.getHotel_Id(), hotelInf.getHotel_Name(),hotelInf.getHotel_Room_Available(),hotelInf.getHotel_Address(), hotelInf.getHotel_Phone(), hotelInf.getHotel_Rating());
+                System.out.printf("|%-7s|%-15s|%-22d|%-30s|%-18s|%-15d|\n", hotelInf.getHotel_Id(), hotelInf.getHotel_Name(), hotelInf.getHotel_Room_Available(), hotelInf.getHotel_Address(), hotelInf.getHotel_Phone(), hotelInf.getHotel_Rating());
                 for (int i = 0; i < 114; i++) {
-                    System.out.print("-");          
+                    System.out.print("-");
                 }
                 System.out.println("");
             }
         }
     }
-    
-    
-    
-    
 
 }
