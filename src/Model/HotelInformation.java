@@ -86,11 +86,12 @@ public class HotelInformation implements Comparable<HotelInformation> {
         this.hotel_Rating = hotel_Rating;
     }
 
+    @Override
     public int compareTo(HotelInformation o) {
         int check = this.getHotel_Name().compareTo(o.getHotel_Name());
         if ( check > 0) return -1;
         else if(check < 0) return 1;
-        else return this.hotel_Id.compareTo(o.getHotel_Id());              
+        else return  this.hotel_Id.compareTo(o.getHotel_Id());              
     }
 
     public void setID() {
@@ -164,7 +165,7 @@ public class HotelInformation implements Comparable<HotelInformation> {
     }
     
     public int getInputRating() {
-      int rate = getAnIntegerCanHaveBlank("Enter the hotel's rating: ", "INVALID RATE", 0, 5);
+      int rate = getAnIntegerCanHaveBlank("Enter the hotel's rating: ", "INVALID RATE", 0, 6);
       if (rate != 0) {
           this.setHotel_Rating(rate);
       }
@@ -176,6 +177,9 @@ public class HotelInformation implements Comparable<HotelInformation> {
     public String toString() {
         return hotel_Id + "-" + hotel_Name + "-" + hotel_Room_Available + "-" + hotel_Address + "-" + hotel_Phone + "-" + hotel_Rating;
     }
-
+    public void displayAHotel() {
+        System.out.println("|   ID  |      Name     |    Room Available    |            Address           |   Phone Number   | Rating (Star) |");
+        System.out.printf("|%-7s|%-15s|%-22d|%-30s|%-18s|%-15d|\n", this.getHotel_Id(), this.getHotel_Name(), this.getHotel_Room_Available(), this.getHotel_Address(), this.getHotel_Phone(), this.getHotel_Rating());
+    }
   
 }

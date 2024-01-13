@@ -148,13 +148,15 @@ public class ListHotel extends ArrayList<HotelInformation> {
             System.out.println("HOTEL DOES NOT EXIST!");
         } else {
             String id = getID("Enter the hotel's ID to delete: ", "INVALID ID", "^[H/h]\\d+");
-            int i = this.searchHotelByID(id);
-            if (i == -1) {
+            HotelInformation hotelDel = this.searchHotelByIDV2(id);
+            if (hotelDel == null) {
                 System.out.println("HOTEL DOES NOT EXIST!");
             } else {
-                String choice = getStringFormat("Enter Y/N", "INVALID CHOICE", "^[Y/N/y/n]$");
+                hotelDel.displayAHotel();
+                System.out.println("Do you ready want to delete this hotel?");
+                String choice = getStringFormat("Enter Y/N: ", "INVALID CHOICE", "^[Y/N/y/n]$");
                 if ("Y".equals(choice)) {
-                    this.remove(i);
+                    this.remove(hotelDel);
                     System.out.println("DELETE SUCCESSFULLY");
                 }
                 
@@ -162,6 +164,27 @@ public class ListHotel extends ArrayList<HotelInformation> {
             }
         }
     }
+    
+    public ListHotel searchHotelContainID(String id) {
+    ListHotel tmp = new ListHotel();
+        for (HotelInformation thi : this) {
+            if(thi.getHotel_Id().contains(id)) {
+                tmp.add(thi);
+            }
+        }
+    return tmp ;
+    }
+        public ListHotel searchHotelByName(String name) {
+        ListHotel tmp = new ListHotel();
+        for (HotelInformation thi : this) {
+            if(thi.getHotel_Name().equalsIgnoreCase(name)) {
+                tmp.add(thi);
+            }
+        }
+    return tmp ;
+    }
+    
+    
 
     public void displayHotelList(ListHotel list) {
 //        this.loadFromFile(path);
@@ -171,10 +194,10 @@ public class ListHotel extends ArrayList<HotelInformation> {
             ListHotel listTmp = (ListHotel) list.clone();
             Collections.sort(listTmp);
             System.out.println("------------------------------------ THE HOTEL INFORMATION LIST ------------------------------------");
-            System.out.println("|   ID  |      Name     |    Room Available    |            Address           |   Phone Number   | Rating (Star) |");
+            System.out.println("|     ID   |        Name        |    Room Available    |            Address           |   Phone Number   | Rating (Star) |");
             for (HotelInformation hotelInf : listTmp) {
-                System.out.printf("|%-7s|%-15s|%-22d|%-30s|%-18s|%-15d|\n", hotelInf.getHotel_Id(), hotelInf.getHotel_Name(), hotelInf.getHotel_Room_Available(), hotelInf.getHotel_Address(), hotelInf.getHotel_Phone(), hotelInf.getHotel_Rating());
-                for (int i = 0; i < 114; i++) {
+                System.out.printf("|%-10s|%-20s|%-22d|%-30s|%-18s|%-15d|\n", hotelInf.getHotel_Id(), hotelInf.getHotel_Name(), hotelInf.getHotel_Room_Available(), hotelInf.getHotel_Address(), hotelInf.getHotel_Phone(), hotelInf.getHotel_Rating());
+                for (int i = 0; i < 122; i++) {
                     System.out.print("-");
                 }
                 System.out.println("");
