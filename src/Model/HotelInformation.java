@@ -5,6 +5,7 @@
  */
 package Model;
 
+
 import static util.DataInput.getAStringCanHaveBlank;
 import static util.DataInput.getAnInteger;
 import static util.DataInput.getAnIntegerCanHaveBlank;
@@ -89,36 +90,40 @@ public class HotelInformation implements Comparable<HotelInformation> {
     @Override
     public int compareTo(HotelInformation o) {
         int check = this.getHotel_Name().compareTo(o.getHotel_Name());
-        if ( check > 0) return -1;
-        else if(check < 0) return 1;
-        else return  this.hotel_Id.compareTo(o.getHotel_Id());              
+        if (check > 0) {
+            return -1;
+        } else if (check < 0) {
+            return 1;
+        } else {
+            return this.hotel_Id.compareTo(o.getHotel_Id());
+        }
     }
 
     public void setID() {
-        this.hotel_Id = getID("Enter  the hotel's ID(HXXXX): ", "The format of ID stands for HXXXX.", "[H/h]\\d+");
+        this.hotel_Id = getID("Enter  the hotel's ID(HXXXX): ", "The format of ID stands for HXXXX.", "[H/h]\\d{4}");
     }
 
     public void setName() {
-        this.hotel_Name = getString("Enter hotel's name: ", "INVALID NAME.");
+        this.hotel_Name = getString("Enter hotel's name: ", "INVALID NAME!");
     }
 
     public void setHotel_Room_Available() {
-        this.hotel_Room_Available = getAnInteger("Enter the number of room available: ", "INVALID NUMBER",0,1000);
+        this.hotel_Room_Available = getAnInteger("Enter the number of room available: ", "ROOM NUMBER IS FROM 0 TO 1000!", 0, 1000);
 
     }
 
     public void setHotel_Address() {
-        this.hotel_Address = getString("Enter the hotel's address.", "INVALID ADDRESS");
+        this.hotel_Address = getString("Enter the hotel's address: ", "INVALID ADDRESS!");
 
     }
 
     public void setHotel_Phone() {
-        this.hotel_Phone = getPhoneNum("Enter hotel's phone number(0XXXXXXXXX): ", "The format of phone number is 0XXXXXXXXX.", "^[0]\\d{9}");
+        this.hotel_Phone = getPhoneNum("Enter hotel's phone number(0XXXXXXXXX): ", "The format of phone number is 0XXXXXXXXX!", "^[0]\\d{9}");
 
     }
 
     public void setHotel_Rating() {
-        this.hotel_Rating = getAnInteger("Enter hotel's rating star: ", "INVALID HOTEL RATING", 0, 6);
+        this.hotel_Rating = getAnInteger("Enter hotel's rating star: ", "RATE NUMBER IS FROM 0 TO 6!", 0, 6);
     }
 
 //    public String getInputID() {
@@ -128,19 +133,16 @@ public class HotelInformation implements Comparable<HotelInformation> {
 //        }
 //        return id;
 //    }
-
     public String getInputPhoneNum() {
-        String phone = getString2Formats("Enter the hotel's phone number(0XXXXXXXXX):", "The format of phone number stands for 0XXXXXXXXX", "", "^[0]\\d{9}");
+        String phone = getString2Formats("Enter the hotel's phone number(0XXXXXXXXX): ", "The format of phone number stands for 0XXXXXXXXX!", "", "^[0]\\d{9}");
         if (phone != null) {
             this.setHotel_Phone(phone);
         }
         return phone;
     }
 
-    
-
     public String getInputName() {
-        String name = getAStringCanHaveBlank("Enter the hotel's name: ", "INVALID NAME");
+        String name = getAStringCanHaveBlank("Enter the hotel's name: ", "INVALID NAME!");
         if (name != null) {
             this.setHotel_Name(name);
         }
@@ -148,38 +150,38 @@ public class HotelInformation implements Comparable<HotelInformation> {
     }
 
     public int getInputRoomAvailable() {
-        int num = getAnIntegerCanHaveBlank("Enter the room available: ", "INVALID NUMBER",0,1000);
-        if (num != 0) {
+        int num = getAnIntegerCanHaveBlank("Enter the room available: ", "ROOM NUMBER IS FROM 0 TO 1000!", 0, 1000);
+        if (num != -1) {
             this.setHotel_Room_Available(num);
         }
         return num;
     }
-    
+
     public String getInputAddress() {
-        String address = getAStringCanHaveBlank("Enter the hotel's address: ", "INVALID ADDRESS");
-        if(address != null) {
-            this.setHotel_Address(address);
-                    
+        String address = getAStringCanHaveBlank("Enter the hotel's address: ", "INVALID ADDRESS!");
+        if (address != null) {
+            this.setHotel_Address(address.trim());
+
         }
         return address;
     }
-    
+
     public int getInputRating() {
-      int rate = getAnIntegerCanHaveBlank("Enter the hotel's rating: ", "INVALID RATE", 0, 6);
-      if (rate != 0) {
-          this.setHotel_Rating(rate);
-      }
-      return rate;
+        int rate = getAnIntegerCanHaveBlank("Enter the hotel's rating: ", "RATE NUMBER IS FROM 0 TO 6!", 0, 6);
+        if (rate != -1) {
+            this.setHotel_Rating(rate);
+        }
+        return rate;
     }
-    
 
     @Override
     public String toString() {
         return hotel_Id + "-" + hotel_Name + "-" + hotel_Room_Available + "-" + hotel_Address + "-" + hotel_Phone + "-" + hotel_Rating;
     }
+
     public void displayAHotel() {
-        System.out.println("|   ID  |      Name     |    Room Available    |            Address           |   Phone Number   | Rating (Star) |");
-        System.out.printf("|%-7s|%-15s|%-22d|%-30s|%-18s|%-15d|\n", this.getHotel_Id(), this.getHotel_Name(), this.getHotel_Room_Available(), this.getHotel_Address(), this.getHotel_Phone(), this.getHotel_Rating());
+        System.out.println("|     ID   |        Name        |    Room Available    |            Address           |   Phone Number   | Rating (Star) |");
+        System.out.printf("|%-10s|%-20s|%-22d|%-30s|%-18s|%-15d|\n", this.getHotel_Id(), this.getHotel_Name(), this.getHotel_Room_Available(), this.getHotel_Address(), this.getHotel_Phone(), this.getHotel_Rating());
     }
-  
+
 }

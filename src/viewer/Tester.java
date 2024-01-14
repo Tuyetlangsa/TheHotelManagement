@@ -38,7 +38,7 @@ public class Tester {
                     do {
                         hotelList.addAHotel();
                         hotelList.saveToFile(path);
-                        choice = DataInput.getAnInteger("Press 1 to continue or 2 to finish adding ", "INVALID CHOICE", 1, 2);
+                        choice = DataInput.getAnInteger("Press 1 to continue or 2 to finish adding ", "CHOOSE 1 OR 2!", 1, 2);
                         if (choice == 2) {
                             check = 0;
                         }
@@ -48,11 +48,11 @@ public class Tester {
                     do {
                         boolean exist = hotelList.check();
                         if (exist == true) {
-                            System.out.println("Existed Hotel.");
+                            System.out.println("Existed Hotel!");
                         } else {
-                            System.out.println("No Hotel Found");
+                            System.out.println("No Hotel Found!");
                         }
-                        choice = DataInput.getAnInteger("Press 1 to continue or 2 to finish checking ", "INVALID CHOICE", 1, 2);
+                        choice = DataInput.getAnInteger("Press 1 to continue or 2 to finish checking ", "CHOOSE 1 OR 2!", 1, 2);
                         if (choice == 2) {
                             check = 0;
                         }
@@ -75,19 +75,17 @@ public class Tester {
                         menuSearch.printMenu();
                         choice = menuSearch.getChoice();
                         switch (choice) {
-                            case 1:                                
-                                
+                            case 1:                                        
                                 ListHotel listTmp = hotelList.searchHotelContainID(DataInput.getID("Enter ID to find: ", "INVALID ID", "[H/h]\\d+"));
-                                listTmp.displayHotelList(listTmp);
+                                listTmp.displayHotelListDescendingById(listTmp);
                                 break;
                             case 2:
-                                ListHotel listTmp2 = hotelList.searchHotelByName(DataInput.getString("Enter hotel's name to find: ", "INVALID"));
-                                listTmp2.displayHotelList(listTmp2);
+                                ListHotel listTmp2 = hotelList.searchHotelByName(DataInput.getString("Enter hotel's name to find: ", "INVALID NAME"));
+                                listTmp2.displayHotelListDescendingById(listTmp2);
                                 break;
                             case 3:
                                 check = 0;
-                                break;  
-                            
+                                break;        
                         }                        
                     } while (check != 0);
                     break;

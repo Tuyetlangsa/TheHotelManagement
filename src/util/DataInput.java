@@ -189,12 +189,13 @@ public class DataInput {
             System.out.println(inputMsg);
             str = sc.nextLine().trim();
             if (str.isEmpty()) {
-                return 0;
+                return -1;
             } else {
                 try {
                     num = Integer.parseInt(str);
                     if (num >= lowerbound && num <= upperbound) return num;
-                } catch (NumberFormatException e) {
+                    else System.out.println(errorMsg);
+                } catch (Exception e) {
                     System.out.println(errorMsg);
                 }
             }
