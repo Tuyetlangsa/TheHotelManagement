@@ -179,7 +179,6 @@ public class DataInput {
                 return str;
             }
         }
-        
     }
 
     public static int getAnIntegerCanHaveBlank(String inputMsg, String errorMsg,int lowerbound, int upperbound) {

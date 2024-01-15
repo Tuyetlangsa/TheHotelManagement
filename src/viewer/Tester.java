@@ -63,6 +63,7 @@ public class Tester {
                     hotelList.saveToFile(path);
                     break;
                 case 4:
+                    System.out.println("Welcome to delete hotel");
                     hotelList.deleteHotel();
                     hotelList.saveToFile(path);
                     break;

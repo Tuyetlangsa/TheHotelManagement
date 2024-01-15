@@ -5,7 +5,6 @@
  */
 package Model;
 
-
 import static util.DataInput.getAStringCanHaveBlank;
 import static util.DataInput.getAnInteger;
 import static util.DataInput.getAnIntegerCanHaveBlank;
@@ -89,13 +88,13 @@ public class HotelInformation implements Comparable<HotelInformation> {
 
     @Override
     public int compareTo(HotelInformation o) {
-        int check = this.getHotel_Name().compareTo(o.getHotel_Name());
+        int check = this.getHotel_Name().compareToIgnoreCase(o.getHotel_Name());
         if (check > 0) {
             return -1;
         } else if (check < 0) {
             return 1;
         } else {
-            return this.hotel_Id.compareTo(o.getHotel_Id());
+            return this.hotel_Id.compareToIgnoreCase(o.getHotel_Id());
         }
     }
 
@@ -144,7 +143,7 @@ public class HotelInformation implements Comparable<HotelInformation> {
     public String getInputName() {
         String name = getAStringCanHaveBlank("Enter the hotel's name: ", "INVALID NAME!");
         if (name != null) {
-            this.setHotel_Name(name);
+            this.setHotel_Name(name.trim());
         }
         return name;
     }
@@ -180,8 +179,8 @@ public class HotelInformation implements Comparable<HotelInformation> {
     }
 
     public void displayAHotel() {
-        System.out.println("|     ID   |        Name        |    Room Available    |            Address           |   Phone Number   | Rating (Star) |");
-        System.out.printf("|%-10s|%-20s|%-22d|%-30s|%-18s|%-15d|\n", this.getHotel_Id(), this.getHotel_Name(), this.getHotel_Room_Available(), this.getHotel_Address(), this.getHotel_Phone(), this.getHotel_Rating());
+        System.out.println("|     ID   |           Name           |        Room Available     |                                  Address                                 |   Phone Number   | Rating (Star) |");
+        System.out.printf("|  %-6s  |   %-20s   |              %-4d         |  %-70s  |   %-12s   |     %-5d     |\n", this.getHotel_Id(), this.getHotel_Name(), this.getHotel_Room_Available(), this.getHotel_Address(), this.getHotel_Phone(), this.getHotel_Rating());
     }
 
 }
